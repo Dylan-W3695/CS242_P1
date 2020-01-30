@@ -9,7 +9,9 @@ public class Song implements Cloneable{
 	private String artist;
 
 	Song(String name, String album, String artist){
-		
+		this.name = name;
+		this.album = album;
+		this.artist = artist;
 	}
 	
 	public Song clone() {

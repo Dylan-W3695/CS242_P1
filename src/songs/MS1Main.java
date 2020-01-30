@@ -9,7 +9,9 @@ public class MS1Main {
 
 	public static void main(String[] args) throws FileNotFoundException {
 		// TODO Auto-generated method stub
-		File file = new File(args[1]);
+		
+		
+		File file = new File(args[0]);
 		Scanner scanner = new Scanner(file);
 		
 		ArrayList<Song> songList = new ArrayList<Song>();
