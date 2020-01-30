@@ -14,14 +14,25 @@ public class Song implements Cloneable{
 		this.artist = artist;
 	}
 	
-	public Song clone() {
-		Song newSong = new Song(name, album, artist);
+	public Song clone() throws CloneNotSupportedException {
+		Song newSong = (Song)super.clone();
 		return newSong;
 	}
 	
 	public boolean equals(Object otherObject) {
-		// TODO does this function take an Object or Song as parameter? if so, how do I cast Song onto the Object?
-		return false;
+		boolean isEqual = false;
+		if(otherObject != null) {
+			if(otherObject == this) {
+				isEqual = true;
+			}
+			else if(otherObject instanceof Song) {
+				Song otherSong = (Song) otherObject;
+				isEqual = otherSong.getAlbum() == album &&
+						otherSong.getArtist() == artist &&
+						otherSong.getName()== name;
+			}
+		}
+		return isEqual;
 	}
 	
 	public String getAlbum() {
