@@ -13,13 +13,13 @@ public class Song implements Cloneable{
 	}
 	
 	public Song clone() {
-		return null;
-		
+		Song newSong = new Song(name, album, artist);
+		return newSong;
 	}
 	
 	public boolean equals(Object otherObject) {
+		// TODO does this function take an Object or Song as parameter? if so, how do I cast Song onto the Object?
 		return false;
-		
 	}
 	
 	public String getAlbum() {
