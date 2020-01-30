@@ -9,25 +9,26 @@ public class MS1Main {
 
 	public static void main(String[] args) throws FileNotFoundException {
 		// TODO Auto-generated method stub
-		
-		
+
 		File file = new File(args[0]);
 		Scanner scanner = new Scanner(file);
-		
+
 		ArrayList<Song> songList = new ArrayList<Song>();
-		
-		while(scanner.hasNextLine()) {
-			scanner.nextLine();
-			scanner.useDelimiter(";");
+
+		while (scanner.hasNext()) {
+			//scanner.nextLine();
+			scanner.useDelimiter(";|\n");
 			String[] songInfo = new String[3];
-			for(int i = 0; i < 3 && scanner.hasNext(); i++) {
+			for (int i = 0; i < 3 && scanner.hasNext(); i++) {
 				songInfo[i] = scanner.next();
 			}
-			Song newSong = new Song(songInfo[0], songInfo[1], songInfo[2]);
-			songList.add(newSong);
+			if (songInfo[0] != null && songInfo[1] != null && songInfo[2] != null) {
+				Song newSong = new Song(songInfo[0], songInfo[1], songInfo[2]);
+				songList.add(newSong);
+			}
 		}
-		
-		for(int i = 0; i < songList.size(); i++) {
+
+		for (int i = 0; i < songList.size(); i++) {
 			System.out.println(songList.get(i).toString());
 		}
 	}
