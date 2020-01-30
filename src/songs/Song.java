@@ -27,9 +27,9 @@ public class Song implements Cloneable{
 			}
 			else if(otherObject instanceof Song) {
 				Song otherSong = (Song) otherObject;
-				isEqual = otherSong.getAlbum() == album &&
-						otherSong.getArtist() == artist &&
-						otherSong.getName()== name;
+				isEqual = otherSong.album == album &&
+						otherSong.artist == artist &&
+						otherSong.name == name;
 			}
 		}
 		return isEqual;
