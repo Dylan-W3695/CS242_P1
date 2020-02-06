@@ -1,7 +1,11 @@
 package songs;
 
 import java.util.Comparator;
-
+/**
+ * 
+ * @author Wahl_D
+ *
+ */
 public class ArtistComparator implements Comparator<Song> {
 	
 	public ArtistComparator(){}

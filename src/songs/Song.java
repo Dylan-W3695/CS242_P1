@@ -1,7 +1,11 @@
 package songs;
 
 import java.lang.String;
-
+/**
+ * 
+ * @author Wahl_D
+ *
+ */
 public class Song implements Cloneable{
 	
 	private String name;

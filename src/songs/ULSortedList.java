@@ -1,6 +1,12 @@
 package songs;
 
 import java.util.Comparator;
+/**
+ * 
+ * @author Wahl_D
+ *
+ * @param <E>
+ */
 
 public class ULSortedList<E> implements Cloneable {
 
@@ -31,7 +37,8 @@ public class ULSortedList<E> implements Cloneable {
 			data = (E[]) new Object[capacity];
 		}
 
-		// data[size] = item;
+		data[size] = item;
+		sift_up(size);
 		size++;
 	}
 
@@ -46,8 +53,14 @@ public class ULSortedList<E> implements Cloneable {
 		size = 0;
 	}
 
-	public ULSortedList<E> clone() throws CloneNotSupportedException {
-		ULSortedList<E> newList = (ULSortedList<E>) super.clone();
+	public ULSortedList<E> clone() {
+		ULSortedList<E> newList = null;
+		try {
+			newList = (ULSortedList<E>) super.clone();
+		} catch (CloneNotSupportedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		newList.data = (E[]) this.data.clone();
 		return newList;
 	}
@@ -107,4 +120,38 @@ public class ULSortedList<E> implements Cloneable {
 	public String toString() {
 		return data.toString();
 	}
+	
+	private void swap(int index1, int index2) {
+		E temp = data[index1];
+		data[index1] = data[index2];
+		data[index2] = temp;
+	}
+	
+	private void sift_up(int index) {
+		if(index > 1) {
+			E item = data[index];
+			E parent = data[index/2];
+			if(cmp.compare(item, parent) > 0) {
+				swap(index, index/2);
+				sift_up(index/2);
+			}
+		}
+	}
+	
+//	private void sift_down(int index) {
+//		int firstChild = index * 2;
+//		int secondChild = firstChild + 1;
+//		
+//		if(firstChild < size) {
+//			int largestChildIndex = firstChild;
+//			if(secondChild < size && 
+//					cmp.compare(data[firstChild], data[secondChild]) < 0) {
+//				largestChildIndex = secondChild;
+//			}
+//			if(cmp.compare(data[index], data[largestChildIndex]) > 0) {
+//				swap(index, largestChildIndex);
+//				sift_down(largestChildIndex);
+//			}
+//		}
+//	}
 }
