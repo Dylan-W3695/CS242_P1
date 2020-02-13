@@ -13,7 +13,7 @@ public class ULSortedList<E> implements Cloneable {
 	int capacity;
 	int size;
 	E[] data;
-	Comparator cmp;
+	Comparator<E> cmp;
 
 	public ULSortedList(Comparator cmp) {
 		capacity = 16;
@@ -35,6 +35,9 @@ public class ULSortedList<E> implements Cloneable {
 			capacity *= 2;
 			E[] temp = data;
 			data = (E[]) new Object[capacity];
+			for(int i = 0; i < temp.length; i++) {
+				data[i] = temp[i];
+			}
 		}
 
 		data[size] = item;
@@ -111,6 +114,9 @@ public class ULSortedList<E> implements Cloneable {
 			data[size - 1] = null;
 			size--;
 		}
+		else {
+			throw new ULItemNotFoundException();
+		}
 	}
 
 	public int size() {
@@ -128,12 +134,14 @@ public class ULSortedList<E> implements Cloneable {
 	}
 	
 	private void sift_up(int index) {
-		if(index > 1) {
+		if(index > 0) {
 			E item = data[index];
 			E parent = data[index/2];
-			if(cmp.compare(item, parent) > 0) {
-				swap(index, index/2);
-				sift_up(index/2);
+			if(parent != null) {
+				if(cmp.compare(item, parent) < 0) {
+					swap(index, index/2);
+					sift_up(index/2);
+				}
 			}
 		}
 	}
